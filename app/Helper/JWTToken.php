@@ -11,16 +11,17 @@ class JWTToken
     // creat a new token
     public static function CreateToken($userEmail, $userID): string
     {
-        $key = env('JWT_KEY');
-        $payload = [
-            'iss' => 'laravel-token',
-            'iat' => time(),
-            'exp' => time() + 24 * 60 * 60,
-            'userEmail' => $userEmail,
-            'userID' => $userID
+        $key =env('JWT_KEY');
+        $payload=[
+            'iss'=>'laravel-token',
+            'iat'=>time(),
+            'exp'=>time()+60*60,
+            'userEmail'=>$userEmail,
+            'userID'=>$userID
         ];
-        return JWT::encode($payload, $key, 'HS256');
+       return JWT::encode($payload,$key,'HS256');
     }
+
 
 
 
