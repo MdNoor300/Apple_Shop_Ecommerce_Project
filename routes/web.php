@@ -39,13 +39,26 @@ Route::get("/PolicyByType/{type}",[PolicyController::class,'PolicyByType']);
 
 
 
+
 // User Auth
 Route::get('/UserLogin/{UserEmail}', [UserController::class, 'UserLogin']);
 Route::get('/VerifyLogin/{UserEmail}/{OTP}', [UserController::class, 'VerifyLogin']);
 Route::get('/logout',[UserController::class,'UserLogout']);
 
 
+
+
 //User Profile
 Route::post('/CreateProfile',[ProfileController::class,'CreateProfile'])->middleware([TokenAuthenticate::class]);
 Route::get('/ReadProfile',[ProfileController::class,'ReadProfile'])->middleware([TokenAuthenticate::class]);
+
+
+
+
+// Product Review
+Route::post('/CreateProductReview', [ProductController::class, 'CreateProductReview'])->middleware([TokenAuthenticate::class]);
+
+
+
+
 
