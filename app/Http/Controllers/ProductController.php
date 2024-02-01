@@ -160,4 +160,13 @@ class ProductController extends Controller
         $data = ProductCart::where('user_id', '=', $user_id)->where('product_id', '=', $request->product_id)->delete();
         return ResponseHelper::Out('success', $data, 200);
     }
+
+
+
+
+
+
+                                  // Invoice and payment
+                                  
+
 }
