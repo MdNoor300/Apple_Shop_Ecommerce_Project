@@ -66,13 +66,11 @@ class InvoiceController extends Controller
                     'sale_price'=>  $EachProduct['price'],
                 ]);
             }
-
            $paymentMethod=SSLCommerz::InitiatePayment($Profile,$payable,$tran_id,$user_email);
 
            DB::commit();
 
            return ResponseHelper::Out('success',array(['paymentMethod'=>$paymentMethod,'payable'=>$payable,'vat'=>$vat,'total'=>$total]),200);
-
         }
         catch (Exception $e) {
             DB::rollBack();
