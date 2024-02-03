@@ -48,19 +48,19 @@ class UserController extends Controller
             $UserEmail=$request->UserEmail;
             $OTP=$request->OTP;
 
-            $verification= User::where('email',$UserEmail)->where('otp',$OTP)->first();
+        $verification = User::where('email', $UserEmail)->where('otp', $OTP)->first();
 
-            if($verification){
-                User::where('email',$UserEmail)->where('otp',$OTP)->update(['otp'=>'0']);
-                $token=JWTToken::CreateToken($UserEmail,$verification->id);
-                return  ResponseHelper::Out('success',"",200)->cookie('token',$token,60*24*30);
-            }
-            else{
-                return  ResponseHelper::Out('fail',null,401);
-            }
+        if ($verification) {
+            User::where('email', $UserEmail)->where('otp', $OTP)->update(['otp' => '0']);
+            $token = JWTToken::CreateToken($UserEmail, $verification->id);
+            return  ResponseHelper::Out('success', "", 200)->cookie('token', $token, 60 * 24 * 30);
+        } else {
+            return  ResponseHelper::Out('fail', null, 401);
+        }
     }
 
-    function UserLogout(){
-        return redirect('/UserLogin/{UserEmail}')->cookie('token','',-1);
+    function UserLogout()
+    {
+        return redirect('/UserLogin/{UserEmail}')->cookie('token', '', -1);
     }
 }
